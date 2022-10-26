@@ -1,4 +1,3 @@
-import { InferGetStaticPropsType } from "next";
 import { useQuery } from "react-query";
 import { ProductListItem } from "../components/Products";
 
@@ -25,7 +24,8 @@ const ProductsCSRPage = () => {
             return <li key={product.id} className="shadow-xl border-2">
                 <ProductListItem 
                 data={
-                    {
+                    {   
+                        id: product.id,
                         title: product.title,
                         thumbnailUrl: product.image,
                         thumbnailAlt: product.title,
@@ -39,7 +39,7 @@ const ProductsCSRPage = () => {
 
 export default ProductsCSRPage;
 
-export interface StoreApiResponse {
+interface StoreApiResponse {
     id:          number;
     title:       string;
     price:       number;

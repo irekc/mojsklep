@@ -10,6 +10,7 @@ const ProductsPage = ({
                 <ProductListItem
                 data={
                     {
+                        id: product.id,
                         title: product.title,
                         thumbnailUrl: product.image,
                         thumbnailAlt: product.title,
@@ -34,7 +35,7 @@ export const getStaticProps = async () => {
     }
 };
 
-export interface StoreApiResponse {
+interface StoreApiResponse {
     id:          number;
     title:       string;
     price:       number;
