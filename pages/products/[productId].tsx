@@ -1,6 +1,7 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import { ProductDetails } from '../../components/Products';
+import ReactMarkdown from 'react-markdown';
 
 type InferGetStaticPathsType<T> = T extends () => Promise<{
   paths: Array<{ params: infer R }>;
@@ -15,6 +16,7 @@ interface StoreApiResponse {
   description: string;
   category: string;
   image: string;
+  longDescription: string;
   rating: {
     rate: number;
     count: number;
@@ -22,7 +24,7 @@ interface StoreApiResponse {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch('https://fakestoreapi.com/products/');
+  const res = await fetch('https://naszsklep-api.vercel.app/api/products');
   const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
 
   return {
@@ -45,7 +47,7 @@ InferGetStaticPathsType<typeof getStaticPaths>
     };
   }
 
-  const res = await fetch(`https://fakestoreapi.com/products/${params?.productId}`);
+  const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${params?.productId}`);
   const data: StoreApiResponse | null = await res.json() as StoreApiResponse | null;
 
   return {
@@ -69,6 +71,7 @@ const ProductIdPage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>)
         thumbnailAlt: data.title,
         description: data.description,
         rating: data.rating.rate,
+        longDescription: data.longDescription,
       }}
       />
     </div>
