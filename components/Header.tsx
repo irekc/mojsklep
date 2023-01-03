@@ -1,17 +1,18 @@
 import Link from "next/link";
+import { CartBar } from "./Cart/Cartbar";
 
 export const Header = () => {
-   return (
-    <header className="max-w-2xl mx-auto w-full">
-        <nav className="bg-gray-500 text-white px-4 py-2">
-            
-            <Link href="/">
-                <a>Main</a>
-            </Link>
-            <Link href="/about">
-                <a>About</a>
-            </Link>
-        </nav>
+  return (
+    <header className="max-w-5xl mx-auto w-full px-4 flex items-center justify-between bg-gray-500">
+      <nav className=" text-white  py-2">
+        <Link href="/">
+          <a className="px-4">Main</a>
+        </Link>
+        <Link href="/about">
+          <a className="px-4">About</a>
+        </Link>
+      </nav>
+      <CartBar />
     </header>
-   );
+  );
 };
